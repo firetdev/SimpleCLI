@@ -1,2 +1,2 @@
-# terminal
+# SimpleCLI
 A small WIP terminal.
