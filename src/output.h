@@ -19,7 +19,6 @@ public:
 
 void Output::addText(std::string txt)
 {
-	//Adds a line of text
 	txtlog += "\n" + txt;
 	text.setString(txtlog);
 	text.move(0, -15);
@@ -27,7 +26,6 @@ void Output::addText(std::string txt)
 
 void Output::appendText(std::string txt)
 {
-	//Appends to current line of text
 	txtlog += txt;
 	text.setString(txtlog);
 	appended += txt.size();
@@ -48,13 +46,11 @@ bool Output::removeFromText()
 
 void Output::render(sf::RenderWindow &window)
 {
-	//Render
 	window.draw(text);
 }
 
 Output::Output(std::string fontPath)
 {
-	//Constructor
 	txtlog = "Welcome to SimpleCLI!\nEnter command: ";
 	font.loadFromFile(fontPath);
 	text.setFont(font);
