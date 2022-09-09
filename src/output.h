@@ -10,7 +10,7 @@ public:
 	sf::Font font;
 	sf::Text text;
 	//Appended contains the number of characters on a line excluding prompt
-	//Used when deleting characters so that promot won't be deleted
+	//Used when deleting characters so that prompt won't be deleted
 	int appended;
 	void addText(std::string);
 	void appendText(std::string);

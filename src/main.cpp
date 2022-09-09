@@ -3,6 +3,8 @@
 #include <fstream>
 #include "output.h"
 #include "input.h"
+#include "commands.h"
+#include "parser.h"
 
 int main()
 {
@@ -26,10 +28,10 @@ int main()
 				if(event.key.code == sf::Keyboard::Enter)
 				{
 					requestingInput = false;
-					//Placeholder--only run on unrecognized command
-					system(input.c_str());
+					parse(input, output);
 					output.addText("Enter command: ");
 					requestingInput = true;
+					input = "";
 				}
 				else if(event.key.code == sf::Keyboard::Backspace)
 				{
