@@ -9,6 +9,7 @@ public:
 	std::string txtlog;
 	sf::Font font;
 	sf::Text text;
+	int line;
 	//Appended contains the number of characters on a line excluding prompt
 	//Used when deleting characters so that prompt won't be deleted
 	int appended;
@@ -22,15 +23,25 @@ public:
 void Output::addText(std::string txt)
 {
 	txtlog += "\n" + txt;
+	line = 0 + txt.size();
+	std::cout << line << ":";
 	text.setString(txtlog);
 	text.move(0, -15);
 }
 
 void Output::appendText(std::string txt)
 {
+	//Add screen wrap
 	txtlog += txt;
-	text.setString(txtlog);
 	appended += txt.size();
+	if(line > 70)
+	{
+		txtlog += "\n";
+		line = 0;
+		text.move(0, -15);
+	}
+	line++;
+	text.setString(txtlog);
 }
 
 bool Output::removeFromText()
@@ -53,11 +64,13 @@ void Output::render(sf::RenderWindow &window)
 
 Output::Output(std::string fontPath)
 {
-	txtlog = "Welcome to SimpleCLI!\nEnter command: ";
+	txtlog = "Welcome to SimpleCLI!";
+	line = txtlog.size();
 	font.loadFromFile(fontPath);
 	text.setFont(font);
 	text.setCharacterSize(15);
-	text.setPosition(10, 360);
+	text.setPosition(10, 375);
 	text.setString(txtlog);
 	appended = 0;
+	addText("Enter command: ");
 }
